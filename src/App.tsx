@@ -13,6 +13,7 @@ export default function App() {
             <div>
                 <h5>The GYM Management</h5>
             </div>
+
             <div>
                 <a href="#" className="app-home">
                     Home
