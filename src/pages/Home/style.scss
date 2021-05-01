@@ -1,0 +1,15 @@
+.what-we-offer {
+  padding-top: 50px;
+
+  .what-we-offer-row > div {
+    margin-bottom: 20px;
+  }
+
+  .what-we-offer-card {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

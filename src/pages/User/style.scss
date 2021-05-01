@@ -1,0 +1,8 @@
+.user-sections {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  .user-sections-body{
+    padding: 10px;
+  }
+}
