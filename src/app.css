@@ -1,9 +1,17 @@
+body{
+    background: #f5f4f4;
+}
+
 .app{
 
 }
+
+.app-header-wrapper{
+
+    background: white;
+}
 .app-header{
     padding: 10px;
-    background: aliceblue;
     display: flex;
     justify-content: space-between;
 }
