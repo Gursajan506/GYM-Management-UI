@@ -17,31 +17,15 @@ export default function AboutPage() {
                         <img src={about_image} alt={"about"}/>
                     </Col>
                     <Col md={6}>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                        </p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                        </p>
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                            Gym and Fitness was founded in 2021 as a college project website.The Gym and Fitness founders didn’t want it to be just another gym equipment retailer - they wanted to be the best in the industry and set their minds to doing so! Since its birth, Gym and Fitness has grown into one of india's largest fitness equipment retailers having helped over 5000 customers live longer, happier and healthier lives
+                            What we do
+
+                            We want to help you live a fit and healthy lifestyle! We do this by helping you find the most suitable equipment for your home gym, studio or commercial gym, keeping your budget, lifestyle and fitness goals in mind. We stock a wide range of gym equipment, with strength equipment, cardio, cross training and so much more. Our awesome team is always keen to help, so please call us to discuss your need
 
                         </p>
+
                     </Col>
                 </Row>
 
