@@ -8,9 +8,9 @@ export default function Footer() {
                 <div className="footer-content">
                     <h4>GYM AND FITNESS</h4>
                     <p>
-                        Train like a beast, look like a beauty
+
                         Train hard or Go home.
-                        Hustle for that muscle
+
                     </p>
                 </div>
                 <div className="footer-social">
