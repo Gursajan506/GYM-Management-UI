@@ -1,26 +1,23 @@
-import React, {useState} from "react";
+import React, {createContext, useReducer} from "react";
 import "./app.css";
-import {Redirect, Route, Switch} from "react-router-dom";
-import HomePage from "./pages/Home/HomePage";
-import LoginPage from "./pages/Login/LoginPage";
+import {BrowserRouter} from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import AboutPage from "./pages/About/AboutPage";
-import {AdminDashboard} from "./pages/Admin/AdminDashboard";
-import UserPanel from "./pages/User/UserPanel";
+import {appReducer, getInitialStoreState, iStoreState} from "./reducer";
+import {Router} from "./Router";
 
+export const AppStateContext = createContext<iStoreState>(getInitialStoreState());
+export const AppDispatchContext = createContext<any>({});
 export default function App() {
+    const [state, dispatch] = useReducer(appReducer, getInitialStoreState());
 
-    return <div className="app">
-        <Header/>
-        <Switch>
-            <Route path="/user/dashboard" component={UserPanel}/>
-            <Route path="/admin/dashboard" component={AdminDashboard}/>
-            <Route path="/about" component={AboutPage}/>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/" component={HomePage}/>
-            <Redirect to="/"/>
-        </Switch>
-        <Footer/>
-    </div>
+    return <BrowserRouter>
+        <AppDispatchContext.Provider value={dispatch}>
+            <AppStateContext.Provider value={state}>
+                <div className="app">
+                    <Router/>
+                </div>
+            </AppStateContext.Provider>
+        </AppDispatchContext.Provider>
+    </BrowserRouter>
 }

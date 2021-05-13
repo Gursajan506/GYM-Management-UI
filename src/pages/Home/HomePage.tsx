@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
 import "./style.scss"
 import AboutPage from "../About/AboutPage";
+import {AppStateContext} from "../../App";
+import {Redirect,} from "react-router-dom";
 export default function HomePage() {
+
+
+    const {loggedInUser}= useContext(AppStateContext);
+
+    if(!loggedInUser){
+        return <Redirect to={"/user/login"}/>
+    }
     return <div>
         <div>
             <iframe width="100%" height="500" src="https://www.youtube.com/embed/3Q-P923MMx8"
