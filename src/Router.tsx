@@ -13,6 +13,10 @@ import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/About/AboutPage";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import UserList from "./pages/Admin/User/User.List";
+import PaymentList from "./pages/Admin/Payment/Payment.List";
+import {PaymentCreate} from "./pages/Admin/Payment/Payment.Create";
+import {UserCreate} from "./pages/Admin/User/User.Create";
 export function Router() {
 
     const [loading, setLoading] = useState(true);
@@ -50,7 +54,11 @@ export function Router() {
             <AdminPrivateRoute path="/admin/dashboard">
                 <AdminDashboard/>
             </AdminPrivateRoute>
-
+            <AdminPrivateRoute path="/admin/users/edit/:id"><UserCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/users/create"><UserCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/users"><UserList/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/payments/create"><PaymentCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/payments"><PaymentList/></AdminPrivateRoute>
             <WithoutAuthRoute path="/admin/login"><AdminLoginPage/></WithoutAuthRoute>
             <WithoutAuthRoute path="/user/login"><LoginPage/></WithoutAuthRoute>
             <Route path="/about" component={AboutPage}/>

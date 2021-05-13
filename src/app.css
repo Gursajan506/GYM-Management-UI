@@ -1,5 +1,5 @@
 body{
-    background: #f5f4f4;
+
 }
 
 .app{
@@ -8,7 +8,7 @@ body{
 
 .app-header-wrapper{
 
-    background: white;
+    background: #f5f4f4;
 }
 .app-header{
     padding: 10px;
@@ -48,6 +48,7 @@ body{
     box-shadow:2px 2px 2px 2px black ;
 }
 .app-footer{
+    margin-top: 450px;
     background: antiquewhite;
 }
 .footer-content-wrapper{

@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import "./style.scss"
 import {Button, Col, Container, Row} from "react-bootstrap";
 import DashboardCard, {DashboardCardProps} from "./DashboardCard";
+import { useHistory } from "react-router-dom";
 
 export function AdminDashboard() {
+    const history=useHistory();
     const [dashboard, setDashboard] = useState<DashboardCardProps[]>([
         {
             title: "Growth",
@@ -12,7 +14,9 @@ export function AdminDashboard() {
             title: "User",
             percentage: "30%",
             actions: <>
-                <Button>
+                <Button onClick={()=>{
+                    history.push("/admin/users");
+                }}>
                     Manage
                 </Button>
             </>,
@@ -21,7 +25,9 @@ export function AdminDashboard() {
             title: "Payments",
             percentage: "3000",
             actions: <>
-                <Button>
+                <Button onClick={()=>{
+                    history.push("/admin/payments");
+                }}>
                     Manage
                 </Button>
             </>,
