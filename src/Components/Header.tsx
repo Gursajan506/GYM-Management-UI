@@ -15,7 +15,7 @@ export default function Header() {
     return <div className="app-header-wrapper">
         <Container>
             <Navbar expand="lg">
-                <Navbar.Brand href="/">GYM</Navbar.Brand>
+                <Navbar.Brand href="/">GYM AND FITNESS</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">

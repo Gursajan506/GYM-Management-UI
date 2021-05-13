@@ -6,9 +6,11 @@ export default function Footer() {
         <Container>
             <div className="footer-content-wrapper">
                 <div className="footer-content">
-                    <h4> The GYM management app</h4>
+                    <h4>GYM AND FITNESS</h4>
                     <p>
-                        This is some description
+
+                        Train hard or Go home.
+
                     </p>
                 </div>
                 <div className="footer-social">

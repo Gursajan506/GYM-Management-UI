@@ -20,12 +20,9 @@ export default function UserPanel() {
                                 <div className="pl-2">
                                     <h5>Diet Plains</h5>
                                     <p >
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-                                        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                                        Letraset sheets containing Lorem Ipsum passages
-                                        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                        In nutrition, diet is the sum of food consumed by a person or other organism.[1] The word diet often implies the use of specific intake of nutrition for health or weight-management reasons (with the two often being related). Although humans are omnivores, each culture and each person holds some food preferences or some food taboos. This may be due to personal tastes or ethical reasons. Individual dietary choices may be more or less healthy.
+
+                                        Complete nutrition requires ingestion and absorption of vitamins, minerals, essential amino acids from protein and essential fatty acids from fat-containing food, also food energy in the form of carbohydrate, protein, and fat. Dietary habits and choices play a significant role in the quality of life, health and longevity. .
                                     </p>
                                 </div>
 
