@@ -3,6 +3,8 @@ import "./style.scss"
 import {Button, Col, Container, Row} from "react-bootstrap";
 import DashboardCard, {DashboardCardProps} from "./DashboardCard";
 import { useHistory } from "react-router-dom";
+import diet from "../../assets/images/workout.webp"
+import feature_image from "../../assets/images/feature.jpg";
 
 export function AdminDashboard() {
     const history=useHistory();
@@ -51,7 +53,13 @@ export function AdminDashboard() {
             </>,
         },
     ])
-    return <div className="admin-dashboard">
+    return <div className="admin-dashboard" style={{
+        backgroundImage: `url(${diet})`,
+        width: "100vw",
+        height: "100vh",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
+    }}>
         <Container>
             <Row>
                 {

@@ -122,7 +122,7 @@ export function UserCreate() {
 
                                 <Form.Group>
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="text" placeholder="Your Password"
+                                    <Form.Control type="password" placeholder="Your Password"
                                                   name="password"
                                                   onChange={handleChange}
                                                   isInvalid={touched && touched.password && !!(errors && errors.password)}

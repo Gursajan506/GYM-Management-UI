@@ -8,13 +8,20 @@ import {iStoreAction} from "../../reducer";
 import {AppDispatchContext} from "../../App";
 import UserAPIs from "../../apis/user/user.apis";
 import AdminUserAPIs from "../../apis/admin/user.apis";
+import feature_image from "../../assets/images/feature.jpg";
 
 export default function AdminLoginPage() {
     const [error, setError] = useState<string>();
     const history = useHistory();
     const dispatch: Dispatch<iStoreAction> = useContext(AppDispatchContext);
-    return <Container>
-        <div className="login-wrapper">
+    return <div className="login-wrapper" style={{
+        backgroundImage: `url(${feature_image})`,
+        width: "100vw",
+        height: "100vh",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
+    }}>
+        <Container>
             <div className="login">
                 <Formik
                     initialValues={{
@@ -67,7 +74,7 @@ export default function AdminLoginPage() {
 
                                 <Form.Group>
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="text" placeholder="Your Password"
+                                    <Form.Control type="password" placeholder="Your Password"
                                                   name="password"
                                                   onChange={handleChange}
                                                   isInvalid={touched && touched.password && !!(errors && errors.password)}
@@ -93,6 +100,6 @@ export default function AdminLoginPage() {
                 </Formik>
             </div>
 
+        </Container>
         </div>
-    </Container>
 }
