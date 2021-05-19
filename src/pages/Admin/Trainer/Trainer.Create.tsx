@@ -1,27 +1,26 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
-import {User} from "../../../reducer";
 import {Alert, Button, Container, Form} from "react-bootstrap";
 import {Formik} from "formik";
 import UserAPIs from "../../../apis/user/user.apis";
 import * as yup from "yup";
 import AdminUserListAPIs from "../../../apis/admin/users/admin.user.apis";
 import {CustomLoader} from "../../../Components/CustomLoader";
+import AdminTrainerAPIs, {iTrainer} from "../../../apis/admin/admin.trainer.apis";
 
-export function UserCreate() {
+export function TrainerCreate() {
     const [error, setError] = useState<string>();
     const history = useHistory();
-    const [user, setUser] = useState<User>();
+    const [item, setItem] = useState<iTrainer>();
 
     const [loading, setLoading] = useState(true);
     const params: any = useParams();
-    const loadUserResource = useCallback(() => {
-
-        new AdminUserListAPIs().view(params.id).then((response) => {
+    const loadItem = useCallback(() => {
+        new AdminTrainerAPIs().view(params.id).then((response) => {
             if (AdminUserListAPIs.hasError(response)) {
                 setError(response.message);
             } else {
-                response.user && setUser(response.user);
+                response.item && setItem(response.item);
             }
             setLoading(false)
         });
@@ -29,11 +28,12 @@ export function UserCreate() {
 
     useEffect(() => {
         if (params.id) {
-            loadUserResource();
+            loadItem();
         } else {
             setLoading(false)
         }
     }, []);
+
     if (loading) {
         return <CustomLoader/>
     }
@@ -49,10 +49,10 @@ export function UserCreate() {
             <div>
                 <h5 className="text-center">
                     {
-                        params.id && "Update User"
+                        params.id && "Update Trainer"
                     }
                     {
-                        !params.id && "Add new User"
+                        !params.id && "Add new Trainer"
                     }
                 </h5>
             </div>
@@ -60,16 +60,17 @@ export function UserCreate() {
         <div className="form-wrapper form-wrapper-bg">
             <div className="form-inner">
                 <Formik
-                    key={user && user.id}
+                    key={item && item.id}
                     initialValues={{
-                        id: (user && user.id) || "",
-                        username: (user && user.username) || "",
-                        password: "",
+                        id: (item && item.id) || "",
+                        name: (item && item.name) || "",
+                        experience: (item && item.experience) || "",
+                        image: (item && item.image) || "",
                     }}
                     onSubmit={(values: any, helpers: any) => {
                         setError("");
                         if (params.id) {
-                            new AdminUserListAPIs().edit_user(values).then((res) => {
+                            new AdminTrainerAPIs().update(values).then((res) => {
                                 if (UserAPIs.hasError(res)) {
                                     setError(res.message);
                                 } else {
@@ -77,7 +78,7 @@ export function UserCreate() {
                                 }
                             })
                         } else {
-                            new AdminUserListAPIs().create_user(values).then((res) => {
+                            new AdminTrainerAPIs().create(values).then((res) => {
                                 if (UserAPIs.hasError(res)) {
                                     setError(res.message);
                                 } else {
@@ -88,9 +89,9 @@ export function UserCreate() {
 
                     }}
                     validationSchema={yup.object({
-                        username: yup.string().required("Please enter username"),
-                        password: yup.string().required("Please enter password"),
-
+                        name: yup.string().required("Please enter name"),
+                        image: yup.string().required("Please enter image url"),
+                        experience: yup.string().required("Please enter experience"),
                     })}
                 >
                     {({
@@ -105,31 +106,45 @@ export function UserCreate() {
                         return (
                             <form onSubmit={handleSubmit}>
                                 <Form.Group>
-                                    <Form.Label>Customer Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your username"
-                                                  name="username"
-                                                  value={values.username}
+                                    <Form.Label>Trainer name</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter your trainer name"
+                                                  name="name"
+                                                  value={values.name}
                                                   onChange={handleChange}
-                                                  isInvalid={touched && touched.username && !!(errors && errors.username)}
+                                                  isInvalid={touched && touched.name && !!(errors && errors.name)}
                                     />
                                     <Form.Control.Feedback type={"invalid"}>
                                         {
-                                            errors && errors.username
+                                            errors && errors.name
                                         }
                                     </Form.Control.Feedback>
 
                                 </Form.Group>
 
                                 <Form.Group>
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Your Password"
-                                                  name="password"
+                                    <Form.Label>Image of Trainer</Form.Label>
+                                    <Form.Control type="text" placeholder=""
+                                                  name="image"
                                                   onChange={handleChange}
-                                                  isInvalid={touched && touched.password && !!(errors && errors.password)}
+                                                  isInvalid={touched && touched.image && !!(errors && errors.image)}
                                     />
                                     <Form.Control.Feedback type={"invalid"}>
                                         {
-                                            errors && errors.password
+                                            errors && errors.image
+                                        }
+                                    </Form.Control.Feedback>
+
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Experience</Form.Label>
+                                    <Form.Control type="text" placeholder=""
+                                                  name="experience"
+                                                  onChange={handleChange}
+                                                  isInvalid={touched && touched.experience && !!(errors && errors.experience)}
+                                    />
+                                    <Form.Control.Feedback type={"invalid"}>
+                                        {
+                                            errors && errors.experience
                                         }
                                     </Form.Control.Feedback>
 

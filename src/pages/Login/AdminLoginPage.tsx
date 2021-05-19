@@ -2,7 +2,6 @@ import React, {Dispatch, useContext, useState} from "react";
 import * as yup from "yup";
 import {Formik} from "formik";
 import {Alert, Button, Container, Form} from "react-bootstrap";
-import "./login.scss"
 import {useHistory} from "react-router-dom";
 import {iStoreAction} from "../../reducer";
 import {AppDispatchContext} from "../../App";
@@ -14,7 +13,7 @@ export default function AdminLoginPage() {
     const [error, setError] = useState<string>();
     const history = useHistory();
     const dispatch: Dispatch<iStoreAction> = useContext(AppDispatchContext);
-    return <div className="login-wrapper" style={{
+    return <div className="form-wrapper" style={{
         backgroundImage: `url(${feature_image})`,
         width: "100vw",
         height: "100vh",
@@ -22,7 +21,7 @@ export default function AdminLoginPage() {
         backgroundSize: "cover"
     }}>
         <Container>
-            <div className="login">
+            <div className="form-inner">
                 <Formik
                     initialValues={{
                         username: "",
@@ -101,5 +100,5 @@ export default function AdminLoginPage() {
             </div>
 
         </Container>
-        </div>
+    </div>
 }

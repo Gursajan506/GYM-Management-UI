@@ -1,7 +1,3 @@
-import axios, {CancelTokenSource} from 'axios';
-
-
-
 export interface iApiBasicResponse {
     statusCode: number
     message?: string
@@ -11,17 +7,16 @@ export interface iApiBasicResponse {
 }
 
 
-
 export interface iMultilevelStringOrNumber {
     [key: string]: undefined | string | string[] | number | number[] | boolean | boolean[] | iMultilevelStringOrNumber | iMultilevelStringOrNumber[]
 }
 
 export default class BaseAPIs {
 
-    static hasError = (response: iApiBasicResponse,addToast?:any) => {
-        if(!response || response.statusCode >= 400){
+    static hasError = (response: iApiBasicResponse, addToast?: any) => {
+        if (!response || response.statusCode >= 400) {
             response && response.message && addToast && addToast(response.message, {appearance: 'error'})
-        }else {
+        } else {
             response && response.message && addToast && addToast(response.message, {appearance: 'success'})
         }
         if (!response || response.statusCode >= 400) return true;

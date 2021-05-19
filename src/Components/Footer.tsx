@@ -1,6 +1,6 @@
 import React from "react";
-import {Switch} from "react-router-dom";
 import {Container} from "react-bootstrap";
+
 export default function Footer() {
     return <div className="app-footer">
         <Container>

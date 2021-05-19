@@ -17,6 +17,13 @@ import UserList from "./pages/Admin/User/User.List";
 import PaymentList from "./pages/Admin/Payment/Payment.List";
 import {PaymentCreate} from "./pages/Admin/Payment/Payment.Create";
 import {UserCreate} from "./pages/Admin/User/User.Create";
+import {TrainerCreate} from "./pages/Admin/Trainer/Trainer.Create";
+import TrainerList from "./pages/Admin/Trainer/Trainer.List";
+import DietPlanList from "./pages/Admin/DietPlan/DietPlan.List";
+import {DietPlanCreate} from "./pages/Admin/DietPlan/DietPlan.Create";
+import {WorkoutCreate} from "./pages/Admin/Workout/Workout.Create";
+import WorkoutList from "./pages/Admin/Workout/Workout.List";
+
 export function Router() {
 
     const [loading, setLoading] = useState(true);
@@ -57,6 +64,15 @@ export function Router() {
             <AdminPrivateRoute path="/admin/users/edit/:id"><UserCreate/></AdminPrivateRoute>
             <AdminPrivateRoute path="/admin/users/create"><UserCreate/></AdminPrivateRoute>
             <AdminPrivateRoute path="/admin/users"><UserList/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/trainers/edit/:id"><TrainerCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/trainers/create"><TrainerCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/trainers"><TrainerList/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/diets/edit/:id"><DietPlanCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/diets/create"><DietPlanCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/diets"><DietPlanList/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/workouts/edit/:id"><WorkoutCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/workouts/create"><WorkoutCreate/></AdminPrivateRoute>
+            <AdminPrivateRoute path="/admin/workouts"><WorkoutList/></AdminPrivateRoute>
             <AdminPrivateRoute path="/admin/payments/create"><PaymentCreate/></AdminPrivateRoute>
             <AdminPrivateRoute path="/admin/payments"><PaymentList/></AdminPrivateRoute>
             <WithoutAuthRoute path="/admin/login"><AdminLoginPage/></WithoutAuthRoute>

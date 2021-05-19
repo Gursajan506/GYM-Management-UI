@@ -1,11 +1,11 @@
 export interface User {
     id: number,
     username: string,
-    created:string
+    created: string
 }
 
 
-export interface iStoreState  {
+export interface iStoreState {
     loggedInUser: User | undefined,
     is_admin: boolean | undefined,
 
@@ -33,7 +33,7 @@ export function appReducer(state: iStoreState, action: iStoreAction): iStoreStat
             return {...state, is_admin: action.is_admin};
         case 'logout':
             console.log("logout")
-            return {...state, loggedInUser: undefined,is_admin: false};
+            return {...state, loggedInUser: undefined, is_admin: false};
         default:
             return {...state};
     }

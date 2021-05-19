@@ -1,14 +1,12 @@
-import React, {Dispatch, useCallback, useContext, useEffect, useState} from "react";
-import {useHistory, useParams} from "react-router-dom";
-import {iStoreAction, User} from "../../../reducer";
-import {AppDispatchContext} from "../../../App";
+import React, {useCallback, useEffect, useState} from "react";
+import {useHistory} from "react-router-dom";
+import {User} from "../../../reducer";
 import {Alert, Button, Container, Form} from "react-bootstrap";
 import {Formik} from "formik";
 import UserAPIs from "../../../apis/user/user.apis";
 import * as yup from "yup";
 import AdminPaymentListAPIs from "../../../apis/admin/admin.payment.apis";
 import AdminUserListAPIs from "../../../apis/admin/users/admin.user.apis";
-import {Simulate} from "react-dom/test-utils";
 
 export function PaymentCreate() {
     const [error, setError] = useState<string>();
@@ -43,8 +41,8 @@ export function PaymentCreate() {
                 </h5>
             </div>
         </div>
-        <div className="login-wrapper">
-            <div className="login">
+        <div className="form-wrapper form-wrapper-bg">
+            <div className="form-inner">
                 <Formik
                     initialValues={{
                         user_id: "",
@@ -87,7 +85,7 @@ export function PaymentCreate() {
                                                   isInvalid={touched && touched.user_id && !!(errors && errors.user_id)}
                                     >
                                         <option>Select one Customer</option>
-                                        {users && users.map((user)=>{
+                                        {users && users.map((user) => {
                                             return <option value={user.id} key={user.id}>
                                                 {user.username}
                                             </option>

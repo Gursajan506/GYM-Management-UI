@@ -1,8 +1,6 @@
 import React, {createContext, useReducer} from "react";
-import "./app.css";
+import "./app.scss";
 import {BrowserRouter} from "react-router-dom";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
 import {appReducer, getInitialStoreState, iStoreState} from "./reducer";
 import {Router} from "./Router";
 

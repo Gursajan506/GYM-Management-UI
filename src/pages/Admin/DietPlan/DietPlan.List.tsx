@@ -3,22 +3,21 @@ import {Button, Container} from "react-bootstrap";
 import React, {useCallback, useEffect, useState} from "react";
 import {CustomLoader} from "../../../Components/CustomLoader";
 import AdminUserListAPIs from "../../../apis/admin/users/admin.user.apis";
-import AdminPaymentListAPIs, {iPayment} from "../../../apis/admin/admin.payment.apis";
 import {useHistory} from "react-router-dom";
-import {User} from "../../../reducer";
+import AdminDietPlanAPIs, {iDietPlan} from "../../../apis/admin/admin.diet.plan.apis";
 
-export default function PaymentList() {
+export default function DietPlanList() {
     const [loading, setLoading] = useState<boolean>(true);
-    const [payments, setPayments] = useState<iPayment[]>([]);
+    const [items, setItems] = useState<iDietPlan[]>([]);
     const [error, setError] = useState<string>();
     const history = useHistory();
     const loadResource = useCallback(() => {
         setLoading(true)
-        new AdminPaymentListAPIs().list().then((response) => {
+        new AdminDietPlanAPIs().list().then((response) => {
             if (AdminUserListAPIs.hasError(response)) {
                 setError(response.message);
             } else {
-                response.payments && setPayments(response.payments);
+                response.items && setItems(response.items);
             }
             setLoading(false)
         });
@@ -28,52 +27,30 @@ export default function PaymentList() {
         loadResource();
     }, []);
 
-    const [users, setUsers] = useState<User[]>([]);
-
-    const loadUserResource = useCallback(() => {
-
-        new AdminUserListAPIs().list().then((response) => {
-            if (AdminUserListAPIs.hasError(response)) {
-                setError(response.message);
-            } else {
-                response.users && setUsers(response.users);
-            }
-        });
-    }, [])
-
-    useEffect(() => {
-        loadUserResource();
-    }, []);
-
-
     const columns = [
         {
-            name: "Name",
-            cell: (row: iPayment) => {
+            name: "Title",
+            selector: "title",
+        },
+        {
+            name: "Image",
+            cell: (row: iDietPlan) => {
                 return <div>
-                    {(users && users.find((value => value.id === row.user_id)) && users.find((value => value.id === row.user_id))?.username) || "Unknown user"}
+                    <img src={row.image} style={{width: "100%"}}/>
                 </div>
             },
         },
         {
-            name: "Amount Paid",
-            selector: "amount",
-        },
-        {
-            name: "Paid at",
-            cell: (row: iPayment) => {
-                return <div>
-                    {row.created}
-                </div>
-            },
+            name: "Description",
+            selector: "description",
         },
         {
             name: "",
             button: true,
-            cell: (row: iPayment) => <Button variant="danger" onClick={() => {
-                const confirm = window.confirm("Do you want to really delete this payment?")
+            cell: (row: iDietPlan) => <Button variant="danger" onClick={() => {
+                const confirm = window.confirm("Do you want to really delete this workout?")
                 if (confirm) {
-                    new AdminPaymentListAPIs().delete_payment(row.id).then(() => {
+                    new AdminDietPlanAPIs().delete(row.id).then(() => {
                         loadResource();
                     })
                 }
@@ -95,19 +72,18 @@ export default function PaymentList() {
 
         <div className="mt-2 ">
             <div>
-
                 <DataTable progressPending={loading}
                            progressComponent={<CustomLoader/>}
-                           title="Payment Management"
+                           title="Diet Plan Management"
                            columns={columns}
-                           data={payments}
+                           data={items}
                            actions={<Button
                                onClick={() => {
-                                   history.push("/admin/payments/create")
+                                   history.push("/admin/diets/create")
                                }
                                }
                            >
-                               Record a payment
+                               Add Diet Plan
                            </Button>}
                 />
             </div>

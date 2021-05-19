@@ -5,7 +5,6 @@ import {CustomLoader} from "../../../Components/CustomLoader";
 import {User} from "../../../reducer";
 import AdminUserListAPIs from "../../../apis/admin/users/admin.user.apis";
 import {useHistory} from "react-router-dom";
-import AdminPaymentListAPIs from "../../../apis/admin/admin.payment.apis";
 
 export default function UserList() {
     const [loading, setLoading] = useState<boolean>(true);
@@ -23,7 +22,6 @@ export default function UserList() {
             setLoading(false)
         });
     }, [])
-
 
 
     useEffect(() => {
@@ -46,10 +44,10 @@ export default function UserList() {
         {
             name: "",
             button: true,
-            cell: (row: User) => <Button variant="danger" onClick={()=>{
-                const confirm=window.confirm("Do you want to really delete this user?")
-                if(confirm) {
-                    new AdminUserListAPIs().delete_user(row.id).then(()=>{
+            cell: (row: User) => <Button variant="danger" onClick={() => {
+                const confirm = window.confirm("Do you want to really delete this user?")
+                if (confirm) {
+                    new AdminUserListAPIs().delete_user(row.id).then(() => {
                         loadResource();
                     })
                 }
@@ -60,8 +58,8 @@ export default function UserList() {
         {
             name: "",
             button: true,
-            cell: (row: User) => <Button onClick={()=>{
-                history.push("/admin/users/edit/"+row.id)
+            cell: (row: User) => <Button onClick={() => {
+                history.push("/admin/users/edit/" + row.id)
             }}>
                 Edit
             </Button>,

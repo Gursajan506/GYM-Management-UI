@@ -14,13 +14,13 @@ export interface UserResponse extends iApiBasicResponse {
 
 export default class AdminUserListAPIs extends BaseAPIs {
 
-    view = async (id:number): Promise<UserResponse> => {
+    view = async (id: number): Promise<UserResponse> => {
         return axios
             .get(this.getApiBaseURL() + "/apis/admin/fetch_user.php", {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
-                params:{
-                    id:id
+                params: {
+                    id: id
                 }
             })
             .then((res): UserResponse => ({statusCode: res.status, ...res.data}))
@@ -51,12 +51,12 @@ export default class AdminUserListAPIs extends BaseAPIs {
                 }
             })
     };
-    create_user = async (values:any): Promise<PaymentListResponse> => {
-        let fd=new FormData();
-        fd.set("username",values.username)
-        fd.set("password",values.password)
+    create_user = async (values: any): Promise<PaymentListResponse> => {
+        let fd = new FormData();
+        fd.set("username", values.username)
+        fd.set("password", values.password)
         return axios
-            .post(this.getApiBaseURL() + "/apis/admin/create_user.php", fd ,{
+            .post(this.getApiBaseURL() + "/apis/admin/create_user.php", fd, {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
             })
@@ -71,13 +71,13 @@ export default class AdminUserListAPIs extends BaseAPIs {
                 }
             })
     };
-    edit_user = async (values:any): Promise<PaymentListResponse> => {
-        let fd=new FormData();
-        fd.set("username",values.username)
-        fd.set("password",values.password)
-        fd.set("id",values.id.toString())
+    edit_user = async (values: any): Promise<PaymentListResponse> => {
+        let fd = new FormData();
+        fd.set("username", values.username)
+        fd.set("password", values.password)
+        fd.set("id", values.id.toString())
         return axios
-            .post(this.getApiBaseURL() + "/apis/admin/update_user.php", fd ,{
+            .post(this.getApiBaseURL() + "/apis/admin/update_user.php", fd, {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
             })
@@ -92,11 +92,11 @@ export default class AdminUserListAPIs extends BaseAPIs {
                 }
             })
     };
-    delete_user = async (id:number): Promise<PaymentListResponse> => {
-        let fd=new FormData();
-        fd.set("id",id.toString())
+    delete_user = async (id: number): Promise<PaymentListResponse> => {
+        let fd = new FormData();
+        fd.set("id", id.toString())
         return axios
-            .post(this.getApiBaseURL() + "/apis/admin/delete_user.php", fd ,{
+            .post(this.getApiBaseURL() + "/apis/admin/delete_user.php", fd, {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
             })

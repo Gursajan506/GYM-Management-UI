@@ -19,10 +19,18 @@ export default function AboutPage() {
                     <Col md={6}>
                         <p>
 
-                            Gym and Fitness was founded in 2021 as a college project website.The Gym and Fitness founders didn’t want it to be just another gym equipment retailer - they wanted to be the best in the industry and set their minds to doing so! Since its birth, Gym and Fitness has grown into one of india's largest fitness equipment retailers having helped over 5000 customers live longer, happier and healthier lives
+                            Gym and Fitness was founded in 2021 as a college project website.The Gym and Fitness
+                            founders didn’t want it to be just another gym equipment retailer - they wanted to be the
+                            best in the industry and set their minds to doing so! Since its birth, Gym and Fitness has
+                            grown into one of india's largest fitness equipment retailers having helped over 5000
+                            customers live longer, happier and healthier lives
                             What we do
 
-                            We want to help you live a fit and healthy lifestyle! We do this by helping you find the most suitable equipment for your home gym, studio or commercial gym, keeping your budget, lifestyle and fitness goals in mind. We stock a wide range of gym equipment, with strength equipment, cardio, cross training and so much more. Our awesome team is always keen to help, so please call us to discuss your need
+                            We want to help you live a fit and healthy lifestyle! We do this by helping you find the
+                            most suitable equipment for your home gym, studio or commercial gym, keeping your budget,
+                            lifestyle and fitness goals in mind. We stock a wide range of gym equipment, with strength
+                            equipment, cardio, cross training and so much more. Our awesome team is always keen to help,
+                            so please call us to discuss your need
 
                         </p>
 

@@ -1,48 +1,30 @@
 import axios from 'axios';
 import BaseAPIs, {iApiBasicResponse} from "../base.apis";
 
-export interface iPayment {
-    created: string,
-    amount: string,
+export interface iDietPlan {
+    title: string,
+    description: string,
     id: number,
-    username: string
-    user_id: number
+    image: string
 }
 
-export interface PaymentListResponse extends iApiBasicResponse {
-    payments?: iPayment[]
+export interface DietPlanListResponse extends iApiBasicResponse {
+    items?: iDietPlan[]
 }
 
-export default class AdminPaymentListAPIs extends BaseAPIs {
+export interface DietPlanViewResponse extends iApiBasicResponse {
+    item?: iDietPlan
+}
 
-    list = async (): Promise<PaymentListResponse> => {
-        return axios
-            .get(this.getApiBaseURL() + "/apis/admin/fetch_payment.php", {
-                headers: {"Content-Type": "application/x-www-form-urlencoded"},
-                withCredentials: true,
-            })
-            .then((res): PaymentListResponse => ({statusCode: res.status, ...res.data}))
-            .catch((error): any => {
-                if (error && error.response && error.response.status && error.response.data) {
-                    return {
-                        message: "Network Error", ...error.response.data, statusCode: error.response.status
-                    }
-                } else {
-                    return {statusCode: 999, message: "Network Error"};
-                }
-            })
-    };
+export default class AdminDietPlanAPIs extends BaseAPIs {
 
-    create_payment = async (values: any): Promise<PaymentListResponse> => {
-        let fd = new FormData();
-        fd.set("amount", values.amount)
-        fd.set("user_id", values.user_id)
+    list = async (): Promise<DietPlanListResponse> => {
         return axios
-            .post(this.getApiBaseURL() + "/apis/admin/create_payment.php", fd, {
+            .get(this.getApiBaseURL() + "/apis/admin/fetch_diet_plan.php", {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
             })
-            .then((res): PaymentListResponse => ({statusCode: res.status, ...res.data}))
+            .then((res): DietPlanListResponse => ({statusCode: res.status, ...res.data}))
             .catch((error): any => {
                 if (error && error.response && error.response.status && error.response.data) {
                     return {
@@ -53,35 +35,80 @@ export default class AdminPaymentListAPIs extends BaseAPIs {
                 }
             })
     };
-    edit_payment = async (values: any): Promise<PaymentListResponse> => {
-        let fd = new FormData();
-        fd.set("amount", values.amount)
-        fd.set("id", values.id)
-        return axios
-            .post(this.getApiBaseURL() + "/apis/admin/update_payment.php", fd, {
-                headers: {"Content-Type": "application/x-www-form-urlencoded"},
-                withCredentials: true,
-            })
-            .then((res): PaymentListResponse => ({statusCode: res.status, ...res.data}))
-            .catch((error): any => {
-                if (error && error.response && error.response.status && error.response.data) {
-                    return {
-                        message: "Network Error", ...error.response.data, statusCode: error.response.status
-                    }
-                } else {
-                    return {statusCode: 999, message: "Network Error"};
-                }
-            })
-    };
-    delete_payment = async (id: number): Promise<PaymentListResponse> => {
+    view = async (id: number): Promise<DietPlanViewResponse> => {
         let fd = new FormData();
         fd.set("id", id.toString())
         return axios
-            .post(this.getApiBaseURL() + "/apis/admin/delete_payment.php", fd, {
+            .get(this.getApiBaseURL() + "/apis/admin/view_diet_plan.php", {
                 headers: {"Content-Type": "application/x-www-form-urlencoded"},
                 withCredentials: true,
             })
-            .then((res): PaymentListResponse => ({statusCode: res.status, ...res.data}))
+            .then((res): DietPlanViewResponse => ({statusCode: res.status, ...res.data}))
+            .catch((error): any => {
+                if (error && error.response && error.response.status && error.response.data) {
+                    return {
+                        message: "Network Error", ...error.response.data, statusCode: error.response.status
+                    }
+                } else {
+                    return {statusCode: 999, message: "Network Error"};
+                }
+            })
+    };
+
+
+    create = async (values: any): Promise<iApiBasicResponse> => {
+        let fd = new FormData();
+        fd.set("title", values.title)
+        fd.set("image", values.image)
+        fd.set("description", values.description)
+        return axios
+            .post(this.getApiBaseURL() + "/apis/admin/create_diet_plan.php", fd, {
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                withCredentials: true,
+            })
+            .then((res): iApiBasicResponse => ({statusCode: res.status, ...res.data}))
+            .catch((error): any => {
+                if (error && error.response && error.response.status && error.response.data) {
+                    return {
+                        message: "Network Error", ...error.response.data, statusCode: error.response.status
+                    }
+                } else {
+                    return {statusCode: 999, message: "Network Error"};
+                }
+            })
+    };
+
+    update = async (values: any): Promise<iApiBasicResponse> => {
+        let fd = new FormData();
+        fd.set("id", values.id)
+        fd.set("title", values.title)
+        fd.set("image", values.image)
+        fd.set("description", values.description)
+        return axios
+            .post(this.getApiBaseURL() + "/apis/admin/update_diet_plan.php", fd, {
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                withCredentials: true,
+            })
+            .then((res): iApiBasicResponse => ({statusCode: res.status, ...res.data}))
+            .catch((error): any => {
+                if (error && error.response && error.response.status && error.response.data) {
+                    return {
+                        message: "Network Error", ...error.response.data, statusCode: error.response.status
+                    }
+                } else {
+                    return {statusCode: 999, message: "Network Error"};
+                }
+            })
+    };
+    delete = async (id: number): Promise<DietPlanListResponse> => {
+        let fd = new FormData();
+        fd.set("id", id.toString())
+        return axios
+            .post(this.getApiBaseURL() + "/apis/admin/delete_diet_plan.php", fd, {
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                withCredentials: true,
+            })
+            .then((res): DietPlanListResponse => ({statusCode: res.status, ...res.data}))
             .catch((error): any => {
                 if (error && error.response && error.response.status && error.response.data) {
                     return {

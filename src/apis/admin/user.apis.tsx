@@ -1,9 +1,8 @@
-
 import axios from 'axios';
 import {User} from "../../reducer";
 import BaseAPIs, {iApiBasicResponse} from "../base.apis";
 
-export interface iUserLoginResponse extends iApiBasicResponse,User{
+export interface iUserLoginResponse extends iApiBasicResponse, User {
     authenticated?: boolean
 }
 

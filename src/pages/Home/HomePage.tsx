@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
 import "./style.scss"
 import AboutPage from "../About/AboutPage";
@@ -11,6 +11,13 @@ import ma from "../../assets/images/ma.jpeg"
 import workout from "../../assets/images/workout.webp"
 import supliment from "../../assets/images/supliment.jpg"
 import pt from "../../assets/images/pt.png"
+import {iDietPlan} from "../../apis/admin/admin.diet.plan.apis";
+import {iWorkout} from "../../apis/admin/admin.workout.apis";
+import {iTrainer} from "../../apis/admin/admin.trainer.apis";
+import AdminDashboardAPIs from "../../apis/admin/dashbord.apis";
+import useIsMounted from "ismounted";
+import DetailCard from "./Detail.Card";
+import {CustomLoader} from "../../Components/CustomLoader";
 
 export default function HomePage() {
 
@@ -22,7 +29,33 @@ export default function HomePage() {
     const [showYoga, _showYoga] = useState(false);
     const [showPT, _showPT] = useState(false);
     const [showMA, _showMA] = useState(false);
+    const [diets,setDiets]=useState<iDietPlan[]>([]);
+    const [workouts,setWorkouts]=useState<iWorkout[]>([]);
+    const [trainers,setTrainers]=useState<iTrainer[]>([]);
 
+    const isMounted = useIsMounted();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>();
+    const loadDashboard = useCallback(() => {
+        setLoading(true)
+        new AdminDashboardAPIs().get_user_dashboard().then((res) => {
+            if (isMounted.current) {
+                if (AdminDashboardAPIs.hasError(res)) {
+                    setError(res.message)
+                } else {
+                    if(res.dashboard){
+                        setWorkouts(res.dashboard.workouts)
+                        setTrainers(res.dashboard.trainers)
+                        setDiets(res.dashboard.diet_plans)
+                    }
+                    setLoading(false)
+                }
+            }
+        })
+    }, [isMounted])
+    useEffect(()=>{
+        loadDashboard();
+    },[])
     if (!loggedInUser) {
         return <Redirect to={"/user/login"}/>
     }
@@ -45,99 +78,24 @@ export default function HomePage() {
                     <Col md={4}>
                         <Card>
                             <div className="what-we-offer-card">
+
                                 <h6>
                                     Diet Planning
                                 </h6>
+
                                 <img src={diet_plan} onClick={() => {
                                     _showDietPlan(!showDietPlan)
                                 }}/>
+                                {
+                                    !loading && showDietPlan && <div className="plan-features">
+                                        {diets && diets.map((diet)=>{
+                                            return <DetailCard key={diet.id} {...diet}/>
+                                        })}
+                                    </div>
+                                }
 
                                 {
-                                    showDietPlan && <div className="plan-features">
-                                        <p>Day 1
-                                            Breakfast Oats Banana Pancakes with
-                                            Protein Shake
-                                            Lunch Multigrain roti with palak chicken Avocado bell pepper salad
-                                            Pre-Workout Snack Bananas
-                                            Dinner
-                                            (Post-Workout) Brown rice, peas paneer curry, sprouts vegetable salad
-
-
-                                            Day 2
-                                            Breakfast Oatmeal with Greek Yogurt & Seasonal fruits
-                                            Mango Juice
-                                            Lunch Multigrain roti, fish curry, vegetable salad
-                                            Pre-Workout Snack Toast with Jam
-                                            Dinner
-                                            (Post-Workout) Broken wheat khichidi, carrot raita, egg white, and vegetable
-                                            salad
-
-
-                                            Day 3
-                                            Breakfast Poached Eggs
-                                            Whole Grain Toast
-                                            Protein Shake
-                                            Lunch Quinoa upma, chicken and broccoli salad
-                                            Pre-Workout Snack Mixed Nuts & Dried Fruits
-                                            Dinner
-                                            (Post-Workout) Lean Beef and vegetable curry, brown rice, cucumber raita
-                                            Baby Potatoes
-                                            Chocolate Milk
-
-
-                                            Day 4
-                                            Breakfast Oatmeal with Honey
-                                            Apple Juice
-                                            Lunch Grilled Chicken
-                                            Salad
-                                            Whole Grain Bread
-                                            Pre-Workout Snack Toast with Peanut Butter
-                                            Dinner
-                                            (Post-Workout) Methi Chicken
-                                            Brown Rice
-                                            Broccoli
-                                            Protein Shake
-
-
-                                            Day 5
-                                            Breakfast Scrambled Egg
-                                            Whole Grain Toast
-                                            Smoothie
-                                            Lunch Grilled chicken vegetable roti rolls
-                                            Green Salad
-                                            Pre-Workout Snack Mixed Nuts & Dried Fruits
-                                            Dinner
-                                            (Post-Workout) Chicken Stir Fry
-                                            Spring Onion, Peppers & Broccoli
-                                            Chocolate Milk
-
-
-                                            Day 6
-                                            Breakfast Oatmeal
-                                            Whole Grain Toast
-                                            Orange Juice
-                                            Lunch Whole Grain Chicken Wrap
-                                            Black Beans, Peppers & Greek Yogurt
-                                            Pre-Workout Snack Apple with peanut butter
-                                            Dinner
-                                            (Post-Workout) Keema bhurji and multigrain rotiLean Beef Mince
-                                            Sweet Potato
-                                            Protein Shake
-
-
-                                            Day 7
-                                            Breakfast Oatmeal with Nuts
-                                            Smoothie
-                                            Lunch Whole wheat pasta with chicken and
-                                            Green Salad
-                                            Pre-Workout Snack Granola or Cereal
-                                            Dinner
-                                            (Post-Workout) Fish curry, boiled green peas salad
-                                            Brown Rice
-                                            Garden Peas
-                                            Milk
-                                        </p>
-                                    </div>
+                                    loading && showDietPlan && <CustomLoader/>
                                 }
                             </div>
                         </Card>
@@ -152,79 +110,16 @@ export default function HomePage() {
                                     _showDailyWorkout(!showDailyWorkout)
                                 }}/>
                                 {
-                                    showDailyWorkout && <div className="plan-features">
-                                        <ul>
-                                            <li>
-                                                Day 1 – Chest
-                                                <ul>
-                                                    <li>
-                                                        Flat bench barbell press –
-
-                                                        4 sets of 8 – 12 reps
-                                                    </li>
-                                                    <li>
-
-                                                        Incline dumbbell press – 4 sets of 8 – 12 reps
-                                                    </li>
-                                                </ul>
-                                                Incline dumbbell flyes – 3 sets of 10 reps
-                                                Cable crossovers – 3 sets of 15 reps
-                                                Push-ups – 4 sets of 20 reps
-                                            </li>
-                                            <li>
-
-                                                Day 2 – Shoulders
-
-                                                Seated dumbbell shoulder press – 4 sets of 12 reps
-                                                Standing barbell military press – 4 sets of 10 -12 reps
-                                                Dumbbell lateral raises – 4 sets of 12 reps
-                                                Rear deltoid flyes – 3 sets of 15 reps
-                                                EZ bar upright rows – 4 sets of 15 reps
-                                                Dumbbell front raises – 4 sets of 12 reps
-
-                                            </li>
-                                        </ul>
-                                        <p>
-
-                                            Day 3 – Legs
-
-                                            Barbell squatBarbell squats – 4 sets of 8 – 10 reps
-                                            Hack squats – 4 sets of 10 reps
-                                            Leg press machine – 3 sets of 10 reps
-                                            Leg extension machine – 3 sets of 10 reps
-                                            Hamstring curls – 3 sets of 10 reps
-                                            Calf raises – 3 sets of 20 reps
-
-                                            Day 4 – Back and Abs
-
-                                            Chin-ups – 4 sets of 10 reps
-                                            Wide grip lat pull-downs – 4 sets of 12 reps
-                                            Close grip lat pull-downs – 4 sets of 12 reps
-                                            Barbell bent over rows – 4 sets of 8 reps
-                                            Dumbbell rows – 4 sets of 8 – 10 reps per arm
-                                            Hyperextensions – 4 sets to failure
-                                            And also include an abs workout – see our abs exercises section here.
-
-                                            Day 5 – Arms (biceps, triceps)
-
-                                            Double arm dumbbell curls = 4 sets 10 – 12 reps
-                                            EZ bar curls – 4 sets 10 reps
-                                            Preacher curl machine – 4 sets of 12 reps
-                                            Triceps rope pushdowns – 4 sets of 15 reps
-                                            Overhead triceps rope extensions – 4 sets of 15 reps
-                                            Skull crushers – 4 sets of 10 reps
-
-                                            Days 6 and 7
-
-                                            Here is where things get interesting, because in reality, there is no right
-                                            or wrong exercise or muscle group for you to train on days 6 and 7, which is
-                                            one of the reasons why these types of splits are considered so fun and so
-                                            enjoyable.
-
-                                        </p>
+                                    !loading && showDailyWorkout && <div className="plan-features">
+                                        {workouts && workouts.map((diet)=>{
+                                            return <DetailCard key={diet.id} {...diet}/>
+                                        })}
                                     </div>
                                 }
-                        </div>
+                                {
+                                    loading && showDailyWorkout && <CustomLoader/>
+                                }
+                            </div>
                         </Card>
                     </Col>
                     <Col md={4}>
@@ -312,7 +207,7 @@ export default function HomePage() {
                                         </p>
                                     </div>
                                 }
-                        </div>
+                            </div>
                         </Card>
                     </Col>
 
@@ -388,15 +283,14 @@ export default function HomePage() {
                                     _showPT(!showPT)
                                 }}/>
                                 {
-                                    showPT && <div className="plan-features">
-                                        <p>Reach Your Fitness Goals with Our Expert Coaches
-
-                                            From getting more toned to losing a few extra pounds, it can be hard to achieve your fitness goals alone. That’s why our Doral personal trainers at GYMGUYZ Coral Gables will come directly to you, making it easier than ever for you to get moving again! We work with everyone from fitness novices to highly-trained athletes, and we take the time to get to know your exact needs and preferences before creating a customized fitness plan. Our mobility specialists can also help seniors and those with mobility impairments to find renewed balance, through gentle exercises designed to build strength over time.
-
-                                            Because we’re flexible and bring the equipment to you, you don’t need to worry about fitting in time for a great workout. Whether you want to take a run in the park or at your office gym, our team at GYMGUYZ will show up for you, and cheer you on as you exceed your goals. Empowering and focused on the positive, our friendly personal trainers in Doral are passionate about helping you become healthier!
-
-                                        </p>
+                                    !loading && showPT && <div className="plan-features">
+                                        {trainers && trainers.map((diet)=>{
+                                            return <DetailCard key={diet.id} title={diet.name} description={diet.experience} image={diet.image}/>
+                                        })}
                                     </div>
+                                }
+                                {
+                                    loading && showPT && <CustomLoader/>
                                 }
                             </div>
                         </Card>
@@ -406,19 +300,24 @@ export default function HomePage() {
                         <Card>
                             <div className="what-we-offer-card">
                                 <h6>
-                                  MARTIAL ARTS
+                                    MARTIAL ARTS
                                 </h6>
                                 <img src={ma} onClick={() => {
                                     _showMA(!showMA)
                                 }}/>
                                 {
                                     showMA && <div className="plan-features">
-                                        <p>martial arts and self defence curriculum, beginning with Taekwondo, Weapons training and Muay Thai/Kickboxing, and later on incorporating Brazilian Jiu Jitsu classes and Mixed Martial Arts
-                                            Take your body to the next level and reach fitness heights you didn’t know possible, all while learning traditional martial arts!
+                                        <p>martial arts and self defence curriculum, beginning with Taekwondo, Weapons
+                                            training and Muay Thai/Kickboxing, and later on incorporating Brazilian Jiu
+                                            Jitsu classes and Mixed Martial Arts
+                                            Take your body to the next level and reach fitness heights you didn’t know
+                                            possible, all while learning traditional martial arts!
 
-                                            Bullyproof your kids and provide them with essential life tools from martial arts training such as fitness, strength, focus, discipline and CONFIDENCE!
+                                            Bullyproof your kids and provide them with essential life tools from martial
+                                            arts training such as fitness, strength, focus, discipline and CONFIDENCE!
 
-                                            World Class Instructors – Train with Champions, train like a Champion, BE A CHAMPION.
+                                            World Class Instructors – Train with Champions, train like a Champion, BE A
+                                            CHAMPION.
 
                                         </p>
                                     </div>
