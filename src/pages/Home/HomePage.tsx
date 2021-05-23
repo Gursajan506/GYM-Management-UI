@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Card, Carousel, Col, Container, Row} from "react-bootstrap";
 import "./style.scss"
 import AboutPage from "../About/AboutPage";
 import {AppStateContext} from "../../App";
@@ -10,6 +10,7 @@ import diet_plan from "../../assets/images/diet_plan.jpg"
 import ma from "../../assets/images/ma.jpeg"
 import workout from "../../assets/images/workout.webp"
 import supliment from "../../assets/images/supliment.jpg"
+import slide_1 from "../../assets/slider-img2.jpg"
 import pt from "../../assets/images/pt.png"
 import {iDietPlan} from "../../apis/admin/admin.diet.plan.apis";
 import {iWorkout} from "../../apis/admin/admin.workout.apis";
@@ -56,11 +57,59 @@ export default function HomePage() {
     useEffect(()=>{
         loadDashboard();
     },[])
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex:any, e:any) => {
+        setIndex(selectedIndex);
+    };
     if (!loggedInUser) {
         return <Redirect to={"/user/login"}/>
     }
     return <div>
         <div>
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={slide_1}
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={slide_1}
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+
+                <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={slide_1}
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+
+
+            </Carousel>
+        </div>
+        <div className="mt-5">
             <iframe width="100%" height="500" src="https://www.youtube.com/embed/3Q-P923MMx8"
                     title="YouTube video player" frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -133,78 +182,8 @@ export default function HomePage() {
                                 }}/>
                                 {
                                     showSupplement && <div className="plan-features">
-                                        <p>1. Creatine
-
-                                            Creatine is perhaps the most efficient supplement if you're doing a
-                                            high-intensity activity, but if your primary exercise consists of aerobics
-                                            and you're aiming for an increase in work capacity, creatine would be a
-                                            complete waste of money.
-
-                                            Few supplements have the solid scientific foundation that creatine has.
-                                            Studies show that it's effective for 80 percent of those who use it. Since
-                                            creatine is found naturally in meat, the more meat you eat, the less likely
-                                            you'll need creatine supplementation. Vegetarians or those who rarely eat
-                                            meat, however, can get huge boosts from most creatine supplements.
-
-                                            Creatine's primary use is as a backup phosphate donor for the replenishment
-                                            of ATP, the most elemental form of energy and the source of energy for all
-                                            muscular contractions. In other words, creatine acts like a second battery
-                                            in your car. It's also a buffer, helping neutralize the acidity that blunts
-                                            energy production in trained muscle.
-
-                                            The major controversies regarding creatine are its side effects and the best
-                                            form to use. Nearly all side effects attributed to creatine, such as muscle
-                                            cramps, kidney disease and gastrointestinal disturbances, haven't proved
-                                            significant under controlled scientific scrutiny. Although various claims
-                                            are made for a variety of creatine supplements, creatine monohydrate, which
-                                            is 99 percent absorbed, is the best form to use.
-
-                                            2. Casein-Whey Protein Supplements
-
-                                            Milk protein consists of 80 percent casein and 20 percent whey, and that's
-                                            the best combination for promoting a positive nitrogen balance in
-                                            bodybuilders. That's because casein is a slow-acting protein that delivers
-                                            its amino acids over a period of seven hours, and whey is a fast-acting
-                                            protein, peaking in 90 minutes.
-
-                                            The faster a protein is absorbed, the faster the liver oxidizes its amino
-                                            acids. That sounds bad, but whey's rapid delivery of amino acids also favors
-                                            increased protein synthesis. A longer-acting protein, such as casein,
-                                            prevents the excess breakdown of protein, an anticatabolic effect, which
-                                            ultimately promotes an anabolic effect - growth.
-
-                                            Besides the high-quality protein content of casein/whey, the newer
-                                            formulations have little or no lactose (i.e., milk sugar), which some people
-                                            have negative reactions to. The native milk proteins also provide a host of
-                                            smaller proteins called peptides, many of which, such as lactoferrin, have
-                                            vital health benefits. The rich cysteine content of whey acts as a precursor
-                                            of glutathione, a primary endogenous antioxidant and liver detoxifier in the
-                                            body.
-
-                                            3. Omega-3 Fatty Acids
-
-                                            If you don't eat fatty fish at least three times a week, you'll be deficient
-                                            in omega-3 fatty acids. Studies suggest that's the case with about 80
-                                            percent of people. Since the brain is composed of 40 percent DHA, one of the
-                                            omega-3s, a long-term lack may cause aberrations in brain neurotransmitter
-                                            function, resulting in depression and aggression.
-
-                                            Omega-3s provide numerous health benefits. Recent studies show that
-                                            middle-aged people who eat diets rich in omega-3 fats have a 75 percent
-                                            decreased incidence of Alzheimer's disease. Omega-3s help prevent several
-                                            types of cancer, including breast and prostate cancers.
-
-                                            They improve insulin sensitivity and make cellular membranes more pliable so
-                                            that hormones can more efficiently interact with cellular receptors. Some
-                                            studies suggest that a generous intake of omega-3, at least five grams
-                                            daily, blunts body fat synthesis and reduces inflammation, which can help
-                                            relieve sore joints and muscles.
-
-                                            You should know that there's an initial inflammatory feature of muscular
-                                            hypertrophy, or growth that can be blunted by omega-3 fats and other drugs.
-                                            The solution is simply not to take omega-3s before training.
-
-                                        </p>
+                                      <DetailCard title={"Supplyment 1"} description={"dddasd"} image={diet_plan}/>
+                                      <DetailCard title={"dasdasd"} description={"dddasd"} image={diet_plan}/>
                                     </div>
                                 }
                             </div>
@@ -416,7 +395,33 @@ export default function HomePage() {
                 </Row>
             </Container>
         </div>
+
         <AboutPage/>
+        <div>
+            <Container>
+                <div>
+                    <h5 className="text-center" style={{fontSize:"24px"}}>How to Find Us</h5>
+
+
+                    <h6>Address</h6>
+                    <p>123-c ranjiy avenve</p>
+
+
+                    <h6>Phone</h6>
+                    <p>12784245548</p>
+
+
+                    <h6>Email</h6>
+                    <p>12784245548@h.com</p>
+
+
+                    <h6>Working hours</h6>
+                    <p>Saturday- Subnday 10am to 8pm</p>
+
+                </div>
+
+            </Container>
+        </div>
     </div>
 
 

@@ -1,4 +1,44 @@
+:root {
+  --color-surface: #fafafd;
+  --color-1: #7B0B64;
+  --color-2: #FF8001;
+  --color-3: #8BCA2D;
+  --color-4: #3D94A0;
+  --color-5: #B52384;
+  --color-6: #47237A;
+  --color-7: #FFC400;
+  --color-8: #555555;
+  --color-9: #373737;
+  --color-10: #646464;
+  --color-11: #989898;
+  --color-12: #9D9D9D;
+  --color-13: #34d8f0;
+  --color-14: rgba(0, 0, 0, .075);
+  --color-15: #DEDEDE;
+  --color-16: #DE9035;
+  --color-17: #F3F3F3;
+  --color-18: #707070;
+  --color-primary: #eee4e4;
+  --color-primary-active: #34CEE6;
+  --font-size-very-small: 0.8rem;
+  --font-size-small: 0.95rem;
+  --font-size-medium: 1rem;
+  --font-size-big: 1.2rem;
+  --font-size-bigger: 1.4rem;
+  --font-size-biggest: 1.6rem;
+  --box-shadow-low: 0 3px 20px 0 rgba(0, 0, 0, 0.05);
+  --box-shadow-mid: 0 3px 20px 0 rgba(0, 0, 0, 0.1);
+  --box-shadow-large: 0 3px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
 body {
+  background: var(--color-primary);
+}
+
+.card {
+  background: var(--color-primary);
+  border: none;
+  box-shadow: var(--box-shadow-low)
 }
 
 .app {
@@ -7,7 +47,7 @@ body {
 
 .app-header-wrapper {
 
-  background: #f5f4f4;
+  background:  var(--color-primary);
 }
 
 .app-header {
@@ -49,10 +89,6 @@ body {
   justify-content: center;
 }
 
-.app-body-packages-plan ul li {
-  background: white;
-  box-shadow: 2px 2px 2px 2px black;
-}
 
 .app-footer {
   background: antiquewhite;
