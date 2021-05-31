@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useState} from "react";
 import "./style.scss"
-import {Alert, Col, Container, Row} from "react-bootstrap";
+import {Alert, Card, Col, Container, Row} from "react-bootstrap";
 import DashboardCard, {DashboardCardProps} from "./DashboardCard";
 import {useHistory} from "react-router-dom";
-import diet from "../../assets/images/workout.webp"
+import diet from "../../assets/images/slide-4.jpg"
 import AdminDashboardAPIs from "../../apis/admin/dashbord.apis";
 import useIsMounted from "ismounted";
 import {CustomLoader} from "../../Components/CustomLoader";
+import {Chart} from "react-google-charts";
 
 export function AdminDashboard() {
     const history = useHistory();
@@ -34,24 +35,59 @@ export function AdminDashboard() {
         return <CustomLoader/>
     }
     return <div className="admin-dashboard" style={{
-        backgroundImage: `url(${diet})`,
+   backgroundColor:"aliceblue",
         width: "100vw",
-        height: "100vh",
+        height: "100%",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover"
     }}>
         {
             error && <Alert>{error}</Alert>
         }
-        <Container>
-            <Row>
+        <Container >
+            <Row >
+                <Col md={12}>
+                    <Card className="admin-dashboard-card">
+                        <div className="admin-dashboard-card-info">
+                            <div>
+                                <h5>
+                                    Growth
+                                </h5>
+                            </div>
+                            <Chart
+                                width={'550px'}
+                                height={"350px"}
+                                chartType="Bar"
+                                loader={<div>Loading Chart</div>}
+                                data={[
+                                    ['Year', 'Users', 'Expenses', 'Profit'],
+                                    ['2014', 1000, 400, 200],
+                                    ['2015', 1170, 460, 250],
+                                    ['2016', 660, 1120, 300],
+                                    ['2017', 1030, 540, 350],
+                                ]}
+                                options={{
+                                    // Material design options
+                                    chart: {
+                                        title: 'GYM Performance',
+                                        subtitle: 'Users, Expenses, and Profit: 2020-2021',
+                                    },
+                                }}
+                                // For tests
+                                rootProps={{ 'data-testid': '2' }}
+                            />
+                        </div>
+
+                    </Card>
+                </Col>
                 {
-                    dashboard.map((value, index) => {
+                    dashboard && dashboard.filter((value => value.title!=="Growth")).map((value, index) => {
                         return <Col md={4} key={index}>
                             <DashboardCard {...value}/>
                         </Col>
                     })
                 }
+                <Col md={12} style={{marginBottom:"500px"}}></Col>
             </Row>
         </Container>
 

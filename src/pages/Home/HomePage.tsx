@@ -11,7 +11,23 @@ import ma from "../../assets/images/ma.jpeg"
 import workout from "../../assets/images/workout.webp"
 import supliment from "../../assets/images/supliment.jpg"
 import slide_1 from "../../assets/slider-img2.jpg"
+import slide_2 from "../../assets/images/slide-4.jpg"
+import slide_3 from "../../assets/images/slide-3.jpg"
 import pt from "../../assets/images/pt.png"
+import whey from "../../assets/whey.jpg"
+import creatine from "../../assets/creatine.jpg"
+import aminoacids from "../../assets/aminoacids.jpg"
+import postworkout from "../../assets/Postworkout.jpg"
+import preworkout from "../../assets/preworkout.png"
+import hatya from "../../assets/hatha-yoga.webp"
+import bikram from "../../assets/bikram.jpg"
+import kundalini from "../../assets/Kundalini.jpg"
+import vinyasa from "../../assets/Vinyasa.jpg"
+import aikido from "../../assets/aikido.jpg"
+import sambo from "../../assets/sambo.jpg"
+import kungfu from "../../assets/kungfu.jpg"
+import karate from "../../assets/karate.jpg"
+import judo from "../../assets/judo.jpg"
 import {iDietPlan} from "../../apis/admin/admin.diet.plan.apis";
 import {iWorkout} from "../../apis/admin/admin.workout.apis";
 import {iTrainer} from "../../apis/admin/admin.trainer.apis";
@@ -75,8 +91,8 @@ export default function HomePage() {
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>HARDWORK</h3>
+                        <p>'All progress takes place outside the comfort zone.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
 
@@ -84,12 +100,12 @@ export default function HomePage() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={slide_1}
+                        src={slide_2}
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>DISCIPLINE</h3>
+                        <p>Success usually comes to those who are too busy to be looking for it.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
 
@@ -97,12 +113,12 @@ export default function HomePage() {
                 <Carousel.Item>
                 <img
                     className="d-block w-100"
-                    src={slide_1}
+                    src={slide_3}
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>REGULAR WORKOUT</h3>
+                    <p> ‘The clock is ticking. Are you becoming the person you want to be?.</p>
                 </Carousel.Caption>
             </Carousel.Item>
 
@@ -182,8 +198,13 @@ export default function HomePage() {
                                 }}/>
                                 {
                                     showSupplement && <div className="plan-features">
-                                      <DetailCard title={"Supplyment 1"} description={"dddasd"} image={diet_plan}/>
-                                      <DetailCard title={"dasdasd"} description={"dddasd"} image={diet_plan}/>
+                                      <DetailCard title={"WHEY PROTEIN"} description={"Whey protein is the protein contained in whey, the watery portion of milk that separates from the curds when making cheese. Whey protein is commonly used for improving athletic performance and increasing strength, but evidence to support these uses is mixed.\n" +
+                                      "\n"} image={whey}/>
+                                      <DetailCard title={"CREATINE"} description={"Creatine increases the body’s ability to produce energy rapidly. Creatine exists naturally in our bodies and helps fuel our muscles, which is why some people take it as a supplement to boost their performance in the gym."} image={creatine}/>
+                                        <DetailCard title={"AMINO ACIDS"} description={"Amino acids are sometimes referred to as the building blocks of life or the building blocks of protein. They are organic compounds that the human body uses to help form protein. All amino acids contain oxygen, carbon, hydrogen, and nitrogen."} image={aminoacids}/>
+                                        <DetailCard title={"PREWORKOUT"} description={"Pre-workout supplements, which are powdered and mixed with water, are advertised to improve athletic performance and energy prior to exercise. However, there’s no set list of ingredients."} image={preworkout}/>
+                                        <DetailCard title={"POSTWORKOUT"} description={"post-workout supplements include glutamine, BCAAs, and casein protein. They help muscles recover and can increase muscle synthesis."} image={postworkout}/>
+
                                     </div>
                                 }
                             </div>
@@ -201,51 +222,11 @@ export default function HomePage() {
                                 }}/>
                                 {
                                     showYoga && <div className="plan-features">
-                                        <p>Yoga Class Levels and Descriptions:
-                                            Levels:
+                                        <DetailCard title={"HATYA YOGA"} description={"Hatha Yoga in ways that take you beyond certain limitations, but fundamentally, it is a physical preparation – preparing the body for a higher possibility"} image={hatya}/>
+                                        <DetailCard title={"BIKRAM YOGA"} description={" Bikram yoga, sometimes called the original hot yoga style, is a whole different ball game. Technically, Bikram is a version of Hatha, a traditional branch of yoga that combines postures and breathing. "} image={bikram}/>
+                                        <DetailCard title={"KUNDALINI YOGA"} description={"Kundalini yoga is a form of yoga that involves chanting, singing, breathing exercises, and repetitive poses.Its purpose is to activate your Kundalini energy, or shakti. This is a spiritual energy that’s said to be located at the base of your spine."} image={kundalini}/>
+                                        <DetailCard title={"VINAYASA"} description={"Vinyasa is a style of yoga characterized by stringing postures together so that you move from one to another, seamlessly, using breath.  Commonly referred to as “flow” yoga, it is sometimes confused with “power yoga“."} image={vinyasa}/>
 
-                                            I – Very gentle. No experience needed. Appropriate for individuals with
-                                            physical challenges.
-                                            II – Low intensity. No experience needed.
-                                            III – Moderate intensity. No experience needed, but good body awareness is
-                                            helpful.
-                                            IV – Vigorous intensity. Though no experience necessary, some prior yoga
-                                            experience, or good body awareness is recommended.
-                                            Yoga Nidra – I
-
-                                            Yoga Nidra, also known as yogic sleep, is a guided meditation technique,
-                                            performed in savasana or resting position on your back. This guided
-                                            meditation guides you through 5 stages to allow you to reboot and end the
-                                            practice feeling completely rejuvenated.
-                                            Restorative Yoga – I
-
-                                            This class is designed with gentle floor based sequences using bolsters,
-                                            blankets, and props that support the practitioner to fully relax the
-                                            muscles, slow down the mental activity of the brain, shift emotional
-                                            patterns, bring ease to the breath, and tune into the nervous system’s
-                                            healing capacity. This hour long class is perfect for any age or level
-                                            student.
-                                            Therapeutic Yoga – I
-
-                                            Therapeutic yoga classes are gentle and include yoga poses modified to
-                                            individual’s needs, gentle movement sequences to help improve the body’s
-                                            movement patterns, yogic breath techniques, and guided relaxation. Each
-                                            class is structured to address a region or system of the body that may need
-                                            balancing for better health and well being.
-
-                                            These classes are appropriate for individuals with musculoskeletal dis-ease
-                                            or injury, neuromuscular issues, chronic pain, balance or movement deficits,
-                                            anxiety or depression, respiratory issues, or other imbalances or
-                                            dysfunctions that individuals may suffer.
-                                            Mindfulness Yoga – I – Gentle Joints
-
-                                            This class incorporates yoga postures, gentle movement sequences, breath
-                                            work, supported silent meditation, and guided relaxation to support
-                                            increased awareness and mindfulness of the breath and body, and quieting of
-                                            the nervous system. This class is a gentle joints practice, so there is no
-                                            weight bearing through the knees or wrists. Chairs are available.
-
-                                        </p>
                                     </div>
                                 }
                             </div>
@@ -286,19 +267,12 @@ export default function HomePage() {
                                 }}/>
                                 {
                                     showMA && <div className="plan-features">
-                                        <p>martial arts and self defence curriculum, beginning with Taekwondo, Weapons
-                                            training and Muay Thai/Kickboxing, and later on incorporating Brazilian Jiu
-                                            Jitsu classes and Mixed Martial Arts
-                                            Take your body to the next level and reach fitness heights you didn’t know
-                                            possible, all while learning traditional martial arts!
+                                        <DetailCard title={"AIKIDO MARTIAL ARTS"} description={"The Japanese martial art of Aikido is a comprehensive system of throwing, joint-locking, striking and pinning techniques, coupled with training in traditional Japanese weapons such as the sword, staff and knife."} image={aikido}/>
+                                        <DetailCard title={"SAMBO MARTIAL ARTS"} description={"Sambo is a Soviet martial art, an internationally-practised combat sport, and a recognized style of amateur wrestling included by UWW in the World Wrestling Championships along with Greco-Roman wrestling and freestyle wrestling."} image={sambo}/>
+                                        <DetailCard title={"KUNG FU"} description={"n general, kung fu/kungfu refers to the Chinese martial arts also called wushu and quanfa. In China, it refers to any study, learning, or practice that requires patience, energy, and time to complete."} image={kungfu}/>
+                                        <DetailCard title={"KARATE"} description={"Practicing karate provides many physical benefits including improved physical conditioning and coordination. It also provides self-confidence from learning self-defense techniques along with developing self-discipline and improved focus."} image={karate}/>
+                                        <DetailCard title={"JUDO"} description={"Judo is a rigorous and demanding physical activity. The practice of judo techniques helps people develop basic and fundamental physical fitness in a number of ways, such as the development of strength, flexibility, agility, speed, dynamic and static balance, explosive power, and endurance."} image={judo}/>
 
-                                            Bullyproof your kids and provide them with essential life tools from martial
-                                            arts training such as fitness, strength, focus, discipline and CONFIDENCE!
-
-                                            World Class Instructors – Train with Champions, train like a Champion, BE A
-                                            CHAMPION.
-
-                                        </p>
                                     </div>
                                 }
                             </div>
@@ -404,19 +378,19 @@ export default function HomePage() {
 
 
                     <h6>Address</h6>
-                    <p>123-c ranjiy avenve</p>
+                    <p>123-c ranjit avenve</p>
 
 
                     <h6>Phone</h6>
-                    <p>12784245548</p>
+                    <p>9098480001</p>
 
 
                     <h6>Email</h6>
-                    <p>12784245548@h.com</p>
+                    <p>sajanrandhawa093@gmail.com</p>
 
 
                     <h6>Working hours</h6>
-                    <p>Saturday- Subnday 10am to 8pm</p>
+                    <p>Saturday- Sunday 10am to 8pm</p>
 
                 </div>
 

@@ -7,7 +7,7 @@ export interface DashboardCardProps {
     title: string,
     percentage: string,
     action_link?:string,
-    actions?: React.ReactNode
+    actions?: React.ReactNode,
 }
 
 export default function DashboardCard(props: DashboardCardProps) {
